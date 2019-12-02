@@ -17,3 +17,10 @@ The dataset folder contains the machine generated QA dataset we use for our pipe
 
 The "need_external_knowledge" field indicate how the QA pair is generated. If it is true, then the QA pair is generated from the comment of the painting, we therefore need external knowledge to answer the question. Otherwise the question is generated from the painting directly. 
 
+### External Knowledge Classifier
+
+The external knowledge classifier will predict whether external knowledge is needed to answer a question given its corresponding painting. Please refer to README in `External Knowledge Classifier` folder on how to run the code.
+
+### TF-IDF Comment Selection
+
+If external knowledge classifier predicts that external knowledge is needed for a given question, then we will need to find the corresponding comment for the question. This module will predict top10 most possible comments for a given question. Please refer to README in `TF-IDF Comment Selection` folder on how to run the code.
