@@ -41,7 +41,7 @@ wget https://semart.s3.amazonaws.com/image_features.json
 Once we have BERT service running in the backend and have the painting features downloaded, we can run feature extraction code to extract features and the extracted features will be saved to `Cache Data` folder.
 
 ```bash
-python feature.py
+mkdir Cache\ Data && python feature.py
 ```
 
 
