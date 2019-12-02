@@ -35,7 +35,7 @@ bert-serving-start -model_dir ./uncased_L-24_H-1024_A-16/ -num_worker=1
 For the painiting, we use pretrained ResNet-152 for feature extraction and also encode each painting into a fixed length vector. The extracted features for the all the paintings within SemArt Dataset can be download here,
 
 ```bash
-https://semart.s3.amazonaws.com/image_features.json
+wget https://semart.s3.amazonaws.com/image_features.json
 ```
 
 Once we have BERT service running in the backend and have the painting features downloaded, we can run feature extraction code to extract features and the extracted features will be saved to `Cache Data` folder.
