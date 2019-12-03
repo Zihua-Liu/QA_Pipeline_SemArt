@@ -48,13 +48,13 @@ def buildup_concept_vocab(examples, mincount = 30):
         for c in ex['concepts']:
             counter[c] = counter.get(c, 0) + 1
     cw = sorted([(count,w) for w, count in counter.items()], reverse=True)
-    print('Top concepts and their counts:')
-    print('\n'.join(map(str,cw[:20])))
+    # print('Top concepts and their counts:')
+    # print('\n'.join(map(str,cw[:20])))
 
     bad_words = [w for w,n in counter.items() if n <= mincount]
     concepts     = [w for w,n in counter.items() if n > mincount]
-    print('Number of ignored concepts: %d/%d = %.2f%%' % (len(bad_words), len(counter), len(bad_words)*100.0/len(counter)))
-    print('Number of concepts would be %d' % (len(concepts), ))
+    # print('Number of ignored concepts: %d/%d = %.2f%%' % (len(bad_words), len(counter), len(bad_words)*100.0/len(counter)))
+    # print('Number of concepts would be %d' % (len(concepts), ))
     concept_to_cid = {c:i for i,c in enumerate(concepts)}
     return concepts, concept_to_cid
 
@@ -72,8 +72,8 @@ def get_top_answers(examples, nans=3000):
         counts[ans] = counts.get(ans, 0) + 1
 
     cw = sorted([(count,w) for w,count in counts.items()], reverse=True)
-    print('Top answer and their counts:'    )
-    print('\n'.join(map(str,cw[:20])))
+    # print('Top answer and their counts:'    )
+    # print('\n'.join(map(str,cw[:20])))
     vocab = []
     for i in range(nans):
         vocab.append(cw[i][1])
@@ -84,7 +84,7 @@ def remove_examples(examples, ans_to_aid):
     for i, ex in enumerate(examples):
         if ex['answer'] in ans_to_aid:
             new_examples.append(ex)
-    print('Number of examples reduced from %d to %d (%f%%)'%(len(examples), len(new_examples), 
+    # print('Number of examples reduced from %d to %d (%f%%)'%(len(examples), len(new_examples), 
         (len(examples) - len(new_examples)) / float(len(examples)) * 100))
     return new_examples
 
@@ -104,7 +104,7 @@ def tokenize_mcb(s):
 def preprocess_questions(examples, nlp='nltk'):
     if nlp == 'nltk':
         from nltk.tokenize import word_tokenize
-    print('Example of generated tokens after preprocessing some questions:')
+    # print('Example of generated tokens after preprocessing some questions:')
     for i, ex in enumerate(examples):
         s = ex['question']
         if nlp == 'nltk':
@@ -114,7 +114,7 @@ def preprocess_questions(examples, nlp='nltk'):
         else:
             ex['question_words'] = tokenize(s)
         if i < 10:
-            print(ex['question_words'])
+            # print(ex['question_words'])
         if i % 1000 == 0:
             sys.stdout.write("processing %d/%d (%.2f%% done)   \r" %  (i, len(examples), i*100.0/len(examples)) )
             sys.stdout.flush() 
@@ -130,19 +130,19 @@ def remove_long_tail_train(examples, minwcount=0):
         for w in ex['question_words']:
             counts[w] = counts.get(w, 0) + 1
     cw = sorted([(count,w) for w, count in counts.items()], reverse=True)
-    print('Top words and their counts:')
-    print('\n'.join(map(str,cw[:20])))
+    # print('Top words and their counts:')
+    # print('\n'.join(map(str,cw[:20])))
 
     total_words = sum(counts.values())
-    print('Total words:', total_words)
+    # print('Total words:', total_words)
     bad_words = [w for w,n in counts.items() if n <= minwcount]
     vocab     = [w for w,n in counts.items() if n > minwcount]
     bad_count = sum(counts[w] for w in bad_words)
-    print('Number of bad words: %d/%d = %.2f%%' % (len(bad_words), len(counts), len(bad_words)*100.0/len(counts)))
-    print('Number of words in vocab would be %d' % (len(vocab), ))
-    print('Number of UNKs: %d/%d = %.2f%%' % (bad_count, total_words, bad_count*100.0/total_words))
+    # print('Number of bad words: %d/%d = %.2f%%' % (len(bad_words), len(counts), len(bad_words)*100.0/len(counts)))
+    # print('Number of words in vocab would be %d' % (len(vocab), ))
+    # print('Number of UNKs: %d/%d = %.2f%%' % (bad_count, total_words, bad_count*100.0/total_words))
 
-    print('Insert the special UNK token')
+    # print('Insert the special UNK token')
     vocab.append('UNK')
     for ex in examples:
         words = ex['question_words']
@@ -175,7 +175,7 @@ def encode_question(examples, word_to_wid, maxlength=15, pad='left'):
     return examples
 
 def encode_answer(examples, ans_to_aid):
-    print('Warning: aid of answer not in vocab is -1')
+    # print('Warning: aid of answer not in vocab is -1')
     for i, ex in enumerate(examples):
         ex['answer_aid'] = ans_to_aid.get(ex['answer'], -1) # -1 means answer not in vocab
     return examples
@@ -246,7 +246,7 @@ def vqa_processed(params):
 
     # The original code is from 1 without 'EOS'. Here we add 'EOS' as the index-0 word
     # In addition, we also add 'START' in consideration of the performance
-    print('Insert special [EOS] and [START] token')
+    # print('Insert special [EOS] and [START] token')
     top_words = ['EOS'] + top_words + ['START'] # EOS should be at the beginning, otherwise error occurs
     wid_to_word = {i:w for i,w in enumerate(top_words)}
     word_to_wid = {w:i for i,w in enumerate(top_words)}
@@ -295,44 +295,44 @@ def vqa_processed(params):
     path_testset     = os.path.join(params['dir'], 'processed', subdirname, 'testset.pickle')
     path_testdevset  = os.path.join(params['dir'], 'processed', subdirname, 'testdevset.pickle')
 
-    print('Write wid_to_word to', path_wid_to_word)
+    # print('Write wid_to_word to', path_wid_to_word)
     with open(path_wid_to_word, 'wb') as handle:
         pickle.dump(wid_to_word, handle)
 
-    print('Write word_to_wid to', path_word_to_wid)
+    # print('Write word_to_wid to', path_word_to_wid)
     with open(path_word_to_wid, 'wb') as handle:
         pickle.dump(word_to_wid, handle)
 
-    print('Write cid_to_concept to', path_cid_to_concept)
+    # print('Write cid_to_concept to', path_cid_to_concept)
     with open(path_cid_to_concept, 'wb') as handle:
         pickle.dump(cid_to_concept, handle)
 
-    print('Write concept_to_cid to', path_concept_to_cid)
+    # print('Write concept_to_cid to', path_concept_to_cid)
     with open(path_concept_to_cid, 'wb') as handle:
         pickle.dump(concept_to_cid, handle)
 
-    print('Write aid_to_ans to', path_aid_to_ans)
+    # print('Write aid_to_ans to', path_aid_to_ans)
     with open(path_aid_to_ans, 'wb') as handle:
         pickle.dump(aid_to_ans, handle)
 
-    print('Write ans_to_aid to', path_ans_to_aid)
+    # print('Write ans_to_aid to', path_ans_to_aid)
     with open(path_ans_to_aid, 'wb') as handle:
         pickle.dump(ans_to_aid, handle)
 
-    print('Write trainset to', path_trainset)
+    # print('Write trainset to', path_trainset)
     with open(path_trainset, 'wb') as handle:
         pickle.dump(trainset, handle)
 
     if params['trainsplit'] == 'train':
-        print('Write valset to', path_valset)
+        # print('Write valset to', path_valset)
         with open(path_valset, 'wb') as handle:
             pickle.dump(valset, handle)
 
-    print('Write testset to', path_testset)
+    # print('Write testset to', path_testset)
     with open(path_testset, 'wb') as handle:
         pickle.dump(testset, handle)
 
-    print('Write testdevset to', path_testdevset)
+    # print('Write testdevset to', path_testdevset)
     with open(path_testdevset, 'wb') as handle:
         pickle.dump(testdevset, handle)
 
@@ -377,3 +377,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     opt_vqa = vars(args)
     vqa_processed(opt_vqa)
+
