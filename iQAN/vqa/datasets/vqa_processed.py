@@ -85,7 +85,7 @@ def remove_examples(examples, ans_to_aid):
         if ex['answer'] in ans_to_aid:
             new_examples.append(ex)
     # print('Number of examples reduced from %d to %d (%f%%)'%(len(examples), len(new_examples), 
-        (len(examples) - len(new_examples)) / float(len(examples)) * 100))
+        # (len(examples) - len(new_examples)) / float(len(examples)) * 100))
     return new_examples
 
 def tokenize(sentence):
