@@ -14,7 +14,7 @@ cp ../Dataset/val.json ./data/SemArt/extract/arch,resnet152_size,448/
 The test set is those questions which external knowledge classifier predicts that no external knowledge is needed. The classifier will generate `not_need_external_knowledge.json` and `need_external_knowledge.json`. Please refer to `../External Knowledge Classifier` on how to generate these two files. `not_need_external_knowledge.json` is the test set for this module.
 
 ```bash
-cp ../External Knowledge Classifier/not_need_external_knowledge.json ./data/SemArt/extract/arch,resnet152_size,448/
+cp ../External\ Knowledge\ Classifier/not_need_external_knowledge.json ./data/SemArt/extract/arch,resnet152_size,448/
 ```
 
 ### Prepare Features for Painings
