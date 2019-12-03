@@ -308,7 +308,7 @@ def save_results(results, epoch, split_name, dir_logs, dir_vqa, is_testing=True)
     else:
         subfolder_name = 'epoch_' + str(epoch)
     dir_epoch = os.path.join(dir_logs, subfolder_name)
-    name_json = 'OpenEnded_mscoco_{}_vqg_results.json'.format(split_name)
+    name_json = 'SemArt_Prediction.json'
     # TODO: simplify formating
     if 'test' in split_name:
         name_json = 'vqa_' + name_json
