@@ -17,6 +17,10 @@ The dataset folder contains the machine generated QA dataset we use for our pipe
 
 The "need_external_knowledge" field indicate how the QA pair is generated. If it is true, then the QA pair is generated from the comment of the painting, we therefore need external knowledge to answer the question. Otherwise the question is generated from the painting directly. 
 
+### iQAN
+
+iQAN is the VQA model we use in our pipeline to answer visual-related question. It takes the question which  external knowledge classifier predicts that no external knowledge is needed as well as the painting as input,  and predicts an answer to the given question. Please refer to README in `iQAN` folder on how to run the code.
+
 ### External Knowledge Classifier
 
 The external knowledge classifier will predict whether external knowledge is needed to answer a question given its corresponding painting. Please refer to README in `External Knowledge Classifier` folder on how to run the code.
