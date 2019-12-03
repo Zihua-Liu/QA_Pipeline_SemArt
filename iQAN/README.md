@@ -47,4 +47,4 @@ Test the model:
 CUDA_VISIBLE_DEVICES=0 python train_dual_model.py --path_opt options/dual_model/dual_model_MUTAN_skipthought.yaml --dir_logs logs/dual_model/iQAN_Mutan_skipthought_dual_training/ --resume best -e --share_embeddings -b 8
 ```
 
-The model will load a checkpoint which has best validation performance and do the predicion on test set.
+The model will load a checkpoint which has best validation performance and do the predicion on test set. The prediction result can be seen in `logs/dual_model/iQAN_Mutan_skipthought_dual_training/evaluate`.
