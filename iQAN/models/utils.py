@@ -1,4 +1,4 @@
-ommon functions shared by different modules
+# Common functions shared by different modules
 import torch
 import logging
 import torch.nn as nn
