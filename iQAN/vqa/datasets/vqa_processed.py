@@ -113,11 +113,11 @@ def preprocess_questions(examples, nlp='nltk'):
             ex['question_words'] = tokenize_mcb(s)
         else:
             ex['question_words'] = tokenize(s)
-        if i < 10:
+        # if i < 10:
             # print(ex['question_words'])
-        if i % 1000 == 0:
-            sys.stdout.write("processing %d/%d (%.2f%% done)   \r" %  (i, len(examples), i*100.0/len(examples)) )
-            sys.stdout.flush() 
+        # if i % 1000 == 0:
+            # sys.stdout.write("processing %d/%d (%.2f%% done)   \r" %  (i, len(examples), i*100.0/len(examples)) )
+            # sys.stdout.flush() 
     return examples
 
 def remove_long_tail_train(examples, minwcount=0):
