@@ -19,7 +19,7 @@ The "need_external_knowledge" field indicate how the QA pair is generated. If it
 
 ### iQAN
 
-iQAN is the VQA model we use in our pipeline to answer visual-related question. It takes the question which  external knowledge classifier predicts that no external knowledge is needed as well as the painting as input,  and predicts an answer to the given question. Please refer to README in `iQAN` folder on how to run the code.
+iQAN (https://github.com/yikang-li/iQAN) is the VQA model we use in our pipeline to answer visual-related question. It takes the question which  external knowledge classifier predicts that no external knowledge is needed as well as the painting as input,  and predicts an answer to the given question. Please refer to README in `iQAN` folder on how to run the code.
 
 ### External Knowledge Classifier
 
